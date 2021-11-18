@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [CreateAssetMenu(fileName = "PlayerMovement Data", menuName = "PlayerMovement Data", order = 1)]
 public class PlayerMovementData : ScriptableObject
