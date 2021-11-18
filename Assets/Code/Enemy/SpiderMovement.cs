@@ -12,28 +12,18 @@ public class SpiderMovement : MonoBehaviour
     {
         //transform.position = transform.position + new Vector3(1 * Time.deltaTime, 0, 0);
 
+        transform.position = Vector2.MoveTowards(transform.position, positions[index], Time.deltaTime * speed);
 
-        if (transform.position.y >= 5)
+        if (transform.position == positions[index])
         {
-            transform.position = transform.position + new Vector3(0, -1 * Time.deltaTime, 0);
+            if (index == positions.Length - 1)
+            {
+                index = 0;
+            }
+            else
+            {
+                index++;
+            }
         }
-        if (transform.position.y <= 0)
-        {
-            transform.position = transform.position + new Vector3(0, 1 * Time.deltaTime, 0);
-        }
-
-        //transform.position = Vector2.MoveTowards(transform.position, positions[index], Time.deltaTime * speed);
-
-        //if (transform.position == positions[index])
-        //{
-        //    if (index == positions.Length - 1)
-        //    {
-        //        index = 0;
-        //    }
-        //    else
-        //    {
-        //        index++;
-        //    }
-        //}
     }
 }
