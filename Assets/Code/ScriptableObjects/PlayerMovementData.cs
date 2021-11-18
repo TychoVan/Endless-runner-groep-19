@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CreateAssetMenu(fileName = "PlayerMovement Data", menuName = "Create PlayerMovement Data", order = 0)]
+[CreateAssetMenu(fileName = "PlayerMovement Data", menuName = "PlayerMovement Data", order = 1)]
 public class PlayerMovementData : ScriptableObject
 {
     [Tooltip("What input to use according to the old inputsystem.")]

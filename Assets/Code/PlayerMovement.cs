@@ -15,9 +15,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // Move according to given speed and input. 
         float yMovement;
         yMovement = Input.GetAxis(Data.InputSelected) * Data.Speed * Time.deltaTime;
-
         _rb.velocity = new Vector3(0, yMovement * Data.Speed * 100, 0);
 
         #region Clamping object between camera bounds.

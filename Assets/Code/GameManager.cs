@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Debug")]
+    public bool FreezeGame;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        // If the game is paused freeze everything. If the game is not, don't do so. 
+        if (FreezeGame == true && Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else if (FreezeGame == false && Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
 }
