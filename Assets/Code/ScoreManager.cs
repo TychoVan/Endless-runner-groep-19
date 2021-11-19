@@ -6,6 +6,21 @@ public class ScoreManager : MonoBehaviour
 {
     public SaveGameData     Data;
     public float            score;
+    public static ScoreManager Instance;
+
+
+    private void Awake()
+    {
+        // Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
 
     private void Start()
     {
@@ -55,8 +70,7 @@ public class ScoreManager : MonoBehaviour
             while(Time.timeScale == 1)
             {
                 yield return new WaitForSeconds(0.1f);
-                score += 0.1f;
-                score = Mathf.Round(score * 10.0f) * 0.1f;
+                score += 10f;
                 // Update the score on the UI.
                 UIManager.Instance.Score.text = string.Format("Score: {0}", score);
             }

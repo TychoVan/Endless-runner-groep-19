@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int      CurrentHealth;
+    public float    InvincibilityPeriod;
+
+    public void Start()
     {
-        
+        if (this.gameObject.GetComponent<PlayerTag>())
+        {
+            CurrentHealth = this.gameObject.GetComponent<PlayerController>().Data.Health;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-        
+        CurrentHealth -= damage;
     }
 }

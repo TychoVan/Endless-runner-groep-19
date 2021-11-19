@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public PlayerMovementData   Data;
 
-    private Rigidbody _rb;
+    private Rigidbody   _rb;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Move according to given speed and input. 
         float yMovement;
-        yMovement = Input.GetAxis(Data.InputSelected) * Data.Speed * Time.deltaTime;
-        _rb.velocity = new Vector3(0, yMovement * Data.Speed * 100, 0);
+        yMovement = Input.GetAxis(Data.InputSelected) * Data.Speed * Time.fixedDeltaTime;
+        _rb.velocity = new Vector3(0, yMovement * Data.Speed * 10, 0);
 
         #region Clamping object between camera bounds.
         // Inspiration taken from https://answers.unity.com/questions/799656/how-to-keep-an-object-within-the-camera-view.html.
@@ -27,5 +27,17 @@ public class PlayerMovement : MonoBehaviour
         sceenBoundary.y = Mathf.Clamp(sceenBoundary.y, 0.1f, 0.9f);
         transform.position = Camera.main.ViewportToWorldPoint(sceenBoundary);
         #endregion
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<EnemyTag>())
+        {
+            this.gameObject.GetComponent<Health>().TakeDamage(other.GetComponent<TempEnemy>().Data.Damage);
+        }
+        else if (other.gameObject.GetComponent<CoinTag>())
+        {
+            ScoreManager.Instance.AddToScore(1000);
+        }
     }
 }
