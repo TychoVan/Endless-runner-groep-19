@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5);
-            int i = Random.Range(0, Waves.Length - 1);
+            int i = Random.Range(0, Waves.Length);
             Instantiate(Waves[i], transform.position, Quaternion.identity);
         }
     }
