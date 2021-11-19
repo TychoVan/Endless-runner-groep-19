@@ -4,41 +4,32 @@ using UnityEngine;
 
 public class SpiderMovement : MonoBehaviour
 {
-    void Update()
+    private float speed;
+    public float flySpeed;
+    private Rigidbody rb;
+
+    void Start()
     {
+        rb = GetComponent<Rigidbody>();
         StartCoroutine(SmoothLerp(3f));
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector3(0, speed, 0);
+        // Move left
+        transform.position = transform.position + new Vector3(flySpeed * Time.deltaTime, 0, 0);
     }
 
     private IEnumerator SmoothLerp(float time)
     {
-        if (transform.position.y <= 0)
+        while (true)
         {
-            // Go up
-            Vector3 startingPos = transform.position;
-            Vector3 finalPos = transform.position + (transform.up * 5) + (transform.right * 1);
-            float elapsedTime = 0;
+            speed = 1;
+            yield return new WaitForSeconds(3);
 
-            while (elapsedTime < time)
-            {
-                transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
-        }
-
-        if (transform.position.y >= 4.9)
-        {
-            // Go down
-            Vector3 startingPos = transform.position;
-            Vector3 finalPos = transform.position + (transform.up * -5) + (transform.right * 1);
-            float elapsedTime = 0;
-
-            while (elapsedTime < time)
-            {
-                transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
-                elapsedTime += Time.deltaTime;
-                yield return null;
-            }
+            speed = -1;
+            yield return new WaitForSeconds(2);
         }
     }
 }
