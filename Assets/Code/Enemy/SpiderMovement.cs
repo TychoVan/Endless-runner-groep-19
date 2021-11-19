@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class SpiderMovement : MonoBehaviour
 {
-    void Start()
-    {
-        StartCoroutine(SmoothLerp(3f));
-    }
-
     void Update()
     {
-        // Move left
-        //transform.position = transform.position + new Vector3(1 * Time.deltaTime, 0, 0);
+        StartCoroutine(SmoothLerp(3f));
     }
 
     private IEnumerator SmoothLerp(float time)
@@ -21,7 +15,7 @@ public class SpiderMovement : MonoBehaviour
         {
             // Go up
             Vector3 startingPos = transform.position;
-            Vector3 finalPos = transform.position + (transform.up * 5);
+            Vector3 finalPos = transform.position + (transform.up * 5) + (transform.right * 1);
             float elapsedTime = 0;
 
             while (elapsedTime < time)
@@ -36,7 +30,7 @@ public class SpiderMovement : MonoBehaviour
         {
             // Go down
             Vector3 startingPos = transform.position;
-            Vector3 finalPos = transform.position + (transform.up * -5);
+            Vector3 finalPos = transform.position + (transform.up * -5) + (transform.right * 1);
             float elapsedTime = 0;
 
             while (elapsedTime < time)
