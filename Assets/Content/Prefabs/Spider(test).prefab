@@ -9,15 +9,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861051476032708576}
+  - component: {fileID: 6225658613826628107}
   - component: {fileID: 4861051476032708577}
   - component: {fileID: 4861051476032708582}
   - component: {fileID: 4861051476032708583}
+  - component: {fileID: 5695060879060438492}
   - component: {fileID: 4861051476032708579}
   - component: {fileID: 1725680275}
   m_Layer: 0
-  m_Name: Spider
+  m_Name: Spider(test)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -35,6 +37,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6225658613826628107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861051476032708580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9711322d4401e4d8a47d3ed33e3f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &4861051476032708577
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,6 +111,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5695060879060438492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861051476032708580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b264cae95f64c3b47bf4e00f9a910058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 11400000, guid: 0bf521497d0025f45ad4c540a5004d0c, type: 2}
 --- !u!114 &4861051476032708579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d6b3089cf61f540817d2eee7e295dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flySpeed: 0.5
+  flySpeed: -0.5
 --- !u!54 &1725680275
 Rigidbody:
   m_ObjectHideFlags: 0

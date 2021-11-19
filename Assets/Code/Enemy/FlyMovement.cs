@@ -7,6 +7,6 @@ public class FlyMovement : MonoBehaviour
     void Update()
     {
         // Move left
-        transform.position = transform.position + new Vector3(2 * Time.deltaTime, 0, 0);
+        transform.position = transform.position + new Vector3(-2 * Time.deltaTime, 0, 0);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public WaveData[] Waves;
+    public GameObject[] Waves;
 
     private int m_Wave;
     private float m_WaveTimer;
@@ -19,29 +19,11 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator Countdown()
     {
-        while (m_WaveTimer > 0)
+        while (true)
         {
-            yield return new WaitForSeconds(1);
-            m_WaveTimer--;
+            yield return new WaitForSeconds(5);
+            int i = Random.Range(0, Waves.Length);
+            Instantiate(Waves[i], transform.position, Quaternion.identity);
         }
-        StartCoroutine(Spawn());
-    }
-
-    IEnumerator Spawn()
-    {
-        int _enemies = m_Wave * 3 + 2;
-        for (int i = 0; i < Waves[m_Wave].Enemies.Length; i++)
-        {
-            yield return new WaitForSeconds(1);
-            Instantiate(Waves[m_Wave].Enemies[i], transform.position, Quaternion.identity);
-        }
-        m_Wave++;
-        if (m_Wave >= Waves.Length)
-        {
-            m_Wave = 0;
-        }
-        m_WaveTimer = 5;
-
-        StartCoroutine(Countdown());
     }
 }
