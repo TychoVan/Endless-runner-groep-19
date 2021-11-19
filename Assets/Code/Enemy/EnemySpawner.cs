@@ -1,27 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] Waves;
-
-    private int m_Wave;
-    private float m_WaveTimer;
+    [Tooltip("Interval in between spawns.")]
+    public GameObject[]     Waves;
+    public float            MinSpawnInterval    = 3;
+    public float            MaxSpawnInterval    = 15;
 
     private void Start()
     {
-        m_Wave = 0;
-        m_WaveTimer = 5;
-
-        StartCoroutine(Countdown());
+        StartCoroutine(Spawner());
     }
 
-    IEnumerator Countdown()
+    /// <summary>
+    /// Spawns a random wave at random intervals (Between MinSpawnInterval and MaxSpawnInterval).
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator Spawner()
     {
         while (true)
         {
-            yield return new WaitForSeconds(5);
+            // Wait before spawning.
+            yield return new WaitForSeconds(Random.RandomRange(MinSpawnInterval, MaxSpawnInterval));
+
+            // Spawn random wave prefab.
             int i = Random.Range(0, Waves.Length);
             Instantiate(Waves[i], transform.position, Quaternion.identity);
         }

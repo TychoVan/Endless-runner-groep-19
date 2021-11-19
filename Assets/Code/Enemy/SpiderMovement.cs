@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpiderMovement : MonoBehaviour
 {
     private float speed;
-    public float flySpeed;
     private Rigidbody rb;
 
     void Start()
@@ -17,8 +16,6 @@ public class SpiderMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector3(0, speed, 0);
-        // Move left
-        transform.position = transform.position + new Vector3(flySpeed * Time.deltaTime, 0, 0);
     }
 
     private IEnumerator SmoothLerp(float time)
@@ -31,5 +28,10 @@ public class SpiderMovement : MonoBehaviour
             speed = -1;
             yield return new WaitForSeconds(2);
         }
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

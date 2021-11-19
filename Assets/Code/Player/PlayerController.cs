@@ -31,9 +31,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // If the Player Object hits an object tagged Enemy, it will subtract points from it's Health script. If it hits an object tagged Coin it will add 1000 points to its score.
         if (other.gameObject.GetComponent<EnemyTag>())
         {
-            this.gameObject.GetComponent<Health>().TakeDamage(other.GetComponent<TempEnemy>().Data.Damage);
+            this.gameObject.GetComponent<Health>().TakeDamage(other.GetComponent<FlyMovement>().Data.Damage);
         }
         else if (other.gameObject.GetComponent<CoinTag>())
         {
