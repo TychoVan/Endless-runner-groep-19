@@ -13,10 +13,13 @@ public class Health : MonoBehaviour
         {
             CurrentHealth = this.gameObject.GetComponent<PlayerController>().Data.Health;
         }
+
+        UIManager.Instance.Health.text = string.Format("Health: {0}", CurrentHealth);
     }
 
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
+        UIManager.Instance.Health.text = string.Format("Health: {0}", CurrentHealth);
     }
 }

@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
 {
 	public static UIManager		Instance;
 	public TextMeshProUGUI		Score, HighScore;
+	public TextMeshProUGUI		Health;
 
 	private void Awake()
 	{

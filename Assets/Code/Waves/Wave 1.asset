@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e4e970fd8713164b986296c0777dc3e, type: 3}
-  m_Name: Enemy1
+  m_Script: {fileID: 11500000, guid: 4481f3ab58dad5240af3098d8a269eb9, type: 3}
+  m_Name: Wave 1
   m_EditorClassIdentifier: 
-  Damage: 1
-  Speed: 0
+  Enemies:
+  - {fileID: 2651839901796550084, guid: 62514f56cbc24c3429cce80b11dc5b29, type: 3}
+  - {fileID: 4861051476032708580, guid: 82a372f611894d143a06dd21c2f84867, type: 3}
