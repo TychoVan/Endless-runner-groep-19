@@ -6,6 +6,20 @@ public class GameManager : MonoBehaviour
 {
     [Header("Debug")]
     public bool FreezeGame;
+    public static GameManager Instance;
+
+    private void Awake()
+    {
+        // Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
 
     private void Update()
     {
