@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Player default
   m_EditorClassIdentifier: 
   InputSelected: Vertical
-  Speed: 5
+  Speed: 7.5
+  Health: 3
