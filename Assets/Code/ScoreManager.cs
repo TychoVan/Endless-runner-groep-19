@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public SaveGameData     Data;
     public float            score;
     public static ScoreManager Instance;
-
 
     private void Awake()
     {
@@ -26,16 +24,16 @@ public class ScoreManager : MonoBehaviour
     {
         StartCoroutine(Counter());
         // Update the score on the UI.
-        UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", Data.HighScore);
+        UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", PlayerPrefs.GetFloat("HighScore", 0));
     }
 
     public void Update()
     {
-        if (score > Data.HighScore)
+        if (score > PlayerPrefs.GetFloat("HighScore", 0))
         {
-            Data.HighScore = score;
+            PlayerPrefs.SetFloat("HighScore", score);            
             // Update the score on the UI.
-            UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", Data.HighScore);
+            UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", PlayerPrefs.GetFloat("HighScore", 0));
         }
     }
 
@@ -55,7 +53,7 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public void WipeHighscore()
     {
-        Data.HighScore = 0;
+        PlayerPrefs.DeleteKey("HighScore");
     }
 
 
