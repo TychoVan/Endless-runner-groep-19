@@ -10,9 +10,9 @@ public class BackgroundScrolling : MonoBehaviour
     {
         transform.position = transform.position + new Vector3(bgSpeed * Time.deltaTime, 0, 0);
 
-        if (transform.position.x >= 10)
-        {
-            transform.position = new Vector3(-10, (float)2.5, 0);
-        }
+        //if (transform.position.x >= 10)
+        //{
+        //    transform.position = new Vector3(-10, (float)2.5, 0);
+        //}
     }
 }
