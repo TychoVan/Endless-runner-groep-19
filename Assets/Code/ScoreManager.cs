@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public float            score;
-    public static ScoreManager Instance;
+    public float                Score;
+    public float                HighScore;
+
+    public static ScoreManager  Instance;
 
     private void Awake()
     {
@@ -23,17 +25,19 @@ public class ScoreManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Counter());
+        HighScore = PlayerPrefs.GetFloat("HighScore", 0);
+
         // Update the score on the UI.
-        UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", PlayerPrefs.GetFloat("HighScore", 0));
+        UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", HighScore);
     }
 
     public void Update()
     {
-        if (score > PlayerPrefs.GetFloat("HighScore", 0))
+        if (Score > HighScore)
         {
-            PlayerPrefs.SetFloat("HighScore", score);            
+            HighScore = Score;
             // Update the score on the UI.
-            UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", PlayerPrefs.GetFloat("HighScore", 0));
+            UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", HighScore);
         }
     }
 
@@ -44,9 +48,16 @@ public class ScoreManager : MonoBehaviour
     /// <param name="amount">How much you want to add to the score.</param>
     public void AddToScore(float amount)
     {
-        score += amount;
+        Score += amount;
     }
 
+    /// <summary>
+    /// Saves the highscore to playerprefs.
+    /// </summary>
+    public void SaveHighScore()
+    {
+        PlayerPrefs.SetFloat("HighScore", Score);
+    }
 
     /// <summary>
     /// Resets the highscore back to 0.
@@ -54,6 +65,8 @@ public class ScoreManager : MonoBehaviour
     public void WipeHighscore()
     {
         PlayerPrefs.DeleteKey("HighScore");
+        HighScore = 0;
+        UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", HighScore);
     }
 
 
@@ -68,9 +81,9 @@ public class ScoreManager : MonoBehaviour
             while(Time.timeScale == 1)
             {
                 yield return new WaitForSeconds(0.1f);
-                score += 10f;
+                Score += 10f;
                 // Update the score on the UI.
-                UIManager.Instance.Score.text = string.Format("Score: {0}", score);
+                UIManager.Instance.Score.text = string.Format("Score: {0}", Score);
             }
         }
     }

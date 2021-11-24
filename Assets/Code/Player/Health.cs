@@ -23,8 +23,14 @@ public class Health : MonoBehaviour
     /// <param name="damage">The amount to be subtracted.</param>
     public void TakeDamage(int damage)
     {
-        CurrentHealth -= damage;
-        // Update the health UI.
-        UIManager.Instance.Health.text = string.Format("Health: {0}", CurrentHealth);
+
+            CurrentHealth -= damage;
+            // Update the health UI.
+            UIManager.Instance.Health.text = string.Format("Health: {0}", CurrentHealth);
+        if(CurrentHealth == 0)
+        {
+            GameManager.Instance.Death();
+            Destroy(gameObject);
+        }
     }
 }
