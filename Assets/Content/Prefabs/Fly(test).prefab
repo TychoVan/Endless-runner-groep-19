@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2651839901796550107}
   - component: {fileID: 2651839901796550106}
   - component: {fileID: 2651839901796550085}
-  - component: {fileID: 8629312157202206409}
   - component: {fileID: 2651839901796550105}
   m_Layer: 0
   m_Name: Fly(test)
@@ -110,19 +109,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8629312157202206409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2651839901796550084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b264cae95f64c3b47bf4e00f9a910058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 0bf521497d0025f45ad4c540a5004d0c, type: 2}
 --- !u!114 &2651839901796550105
 MonoBehaviour:
   m_ObjectHideFlags: 0
