@@ -4,7 +4,6 @@ using EZCameraShake;
 public class Health : MonoBehaviour
 {
     public int      CurrentHealth;
-    public float    InvincibilityPeriod;
 
     public void Start()
     {
@@ -31,6 +30,7 @@ public class Health : MonoBehaviour
         CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
         if(CurrentHealth == 0)
         {
+            // Start the death sequence.
             GameManager.Instance.Death();
             Destroy(gameObject);
         }
