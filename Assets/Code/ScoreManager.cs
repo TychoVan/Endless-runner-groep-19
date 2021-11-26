@@ -65,7 +65,7 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public void SaveHighScore()
     {
-        PlayerPrefs.SetFloat("HighScore", Score);
+        PlayerPrefs.SetFloat("HighScore", HighScore);
     }
 
     /// <summary>
