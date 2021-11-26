@@ -1169,7 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23005ece7c83a41458bb04485b8c1af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainGame: Tycho
+  MainGame: Main Game
   DeathScreen: {fileID: 1160329674}
   QuitScreen: {fileID: 1160329674}
   MainScreen: {fileID: 918852017}
