@@ -7,13 +7,19 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager   Instance;
 
-    [Header("Debug")]
-    public bool     FreezeGame;
-
-    [Header("Placeholder")]
+    [Header("Main Game")]
     [Tooltip("Name of the scene you want to load when loading the main game.")]
     public string       MainGame;
-    public GameObject   DeathScreen, QuitScreen;
+    public GameObject   DeathScreen;        // Window that shows up when you die.
+    public GameObject   QuitScreen;         // window that shows up when you press quit.
+
+    [Header("Start Screen")]
+    public GameObject   MainScreen;         // Screen with buttons to Play, Reset score and Quit.
+    public GameObject   ResetScoreScreen;   // Screen to warn about resetting the highscore.
+
+    [Header("Debug")]
+    public bool     FreezeGame;                         // Freezes the game when pressed.
+
 
     private void Awake()
     {
@@ -30,6 +36,8 @@ public class GameManager : MonoBehaviour
         // Make sure there are no screens active.
         DeathScreen.SetActive(false);
         QuitScreen.SetActive(false);
+        ResetScoreScreen.SetActive(false);
+        MainScreen.SetActive(true);
     }
 
     private void Update()
@@ -53,20 +61,57 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(MainGame);
     }
 
-    public void Death()
+
+    /// <summary>
+    /// Opens a screen to ask wether to reset score or not.
+    /// </summary>
+    public void ResetScreen()
     {
+        MainScreen.SetActive(false);
+        ResetScoreScreen.SetActive(true);
+    }
+
+    /// <summary>
+    /// Resets the highscore.
+    /// </summary>
+    public void ResetScore()
+    {
+        ScoreManager.Instance.WipeHighscore();
+        ResetScoreScreen.SetActive(false);
+        MainScreen.SetActive(true);
+    }
+
+    public void DontResetScore()
+    {
+        ResetScoreScreen.SetActive(false);
+        MainScreen.SetActive(true);
+    }
+
+
+    /// <summary>
+    /// Actions performed on death in Main game.
+    /// </summary>
+    public void Death()
+    {   
+        // Stop increasing the score. And save the highscore.
+        ScoreManager.Instance.Counting = false;
         ScoreManager.Instance.SaveHighScore();
-        Time.timeScale = 0;
-        FreezeGame = true;
+        
         DeathScreen.SetActive(true);
     }
 
+    /// <summary>
+    /// Enables a screen to ask if you want to quit.
+    /// </summary>
     public void EndGame()
     {
         DeathScreen.SetActive(false);
         QuitScreen.SetActive(true);
     }
 
+    /// <summary>
+    /// Shuts off the game.
+    /// </summary>
     public void QuitGame()
     {
         Application.Quit();

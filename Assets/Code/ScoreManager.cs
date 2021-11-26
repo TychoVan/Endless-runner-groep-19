@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public float                Score;
-    public float                HighScore;
+    public float                Score;          // Current score of the player.
+    public float                HighScore;      // Highest score the player has gotten.
+    public bool                 Counting;       // As long as this is true the score will increase.
 
     public static ScoreManager  Instance;
 
@@ -24,6 +25,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        Counting = true;
         StartCoroutine(Counter());
         HighScore = PlayerPrefs.GetFloat("HighScore", 0);
 
@@ -74,17 +76,14 @@ public class ScoreManager : MonoBehaviour
     /// As long as the game is running ad 0.1 points to the counter every tenth of a second.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator Counter()
+    private IEnumerator Counter() 
     {
-        while (true)
+        while (Counting)
         {
-            while(Time.timeScale == 1)
-            {
-                yield return new WaitForSeconds(0.1f);
-                Score += 10f;
-                // Update the score on the UI.
-                UIManager.Instance.Score.text = string.Format("Score: {0}", Score);
-            }
+            yield return new WaitForSeconds(0.1f);
+            Score += 10f;
+            // Update the score on the UI.
+            UIManager.Instance.Score.text = string.Format("Score: {0}", Score);
         }
     }
 }

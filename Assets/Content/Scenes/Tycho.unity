@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 15662076}
   - component: {fileID: 15662078}
   - component: {fileID: 15662077}
+  - component: {fileID: 15662079}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -206,6 +207,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &15662079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15662075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
+  DefaultRotInfluence: {x: 1, y: 1, z: 1}
+  RestPositionOffset: {x: 0, y: 0, z: -10}
+  RestRotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &172825877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,6 +1385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 0
   HighScore: 0
+  Counting: 0
 --- !u!114 &663469431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1380,10 +1398,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23005ece7c83a41458bb04485b8c1af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FreezeGame: 0
   MainGame: Tycho
   DeathScreen: {fileID: 1853463708}
   QuitScreen: {fileID: 2055777591}
+  FreezeGame: 0
 --- !u!4 &663469432
 Transform:
   m_ObjectHideFlags: 0
@@ -2108,7 +2126,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30

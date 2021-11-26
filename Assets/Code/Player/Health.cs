@@ -1,4 +1,5 @@
 using UnityEngine;
+using EZCameraShake;
 
 public class Health : MonoBehaviour
 {
@@ -24,9 +25,10 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
 
-            CurrentHealth -= damage;
-            // Update the health UI.
-            UIManager.Instance.Health.text = string.Format("Health: {0}", CurrentHealth);
+        CurrentHealth -= damage;
+        // Update the health UI.
+        UIManager.Instance.Health.text = string.Format("Health: {0}", CurrentHealth);
+        CameraShaker.Instance.ShakeOnce(2f, 4f, .1f, 1f);
         if(CurrentHealth == 0)
         {
             GameManager.Instance.Death();
