@@ -7,19 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager   Instance;
 
-    [Header("Main Game")]
     [Tooltip("Name of the scene you want to load when loading the main game.")]
-    public string       MainGame;
-    public GameObject   DeathScreen;        // Window that shows up when you die.
-    public GameObject   QuitScreen;         // window that shows up when you press quit.
-
-    [Header("Start Screen")]
-    public GameObject   MainScreen;         // Screen with buttons to Play, Reset score and Quit.
-    public GameObject   ResetScoreScreen;   // Screen to warn about resetting the highscore.
-
-    [Header("Debug")]
-    public bool     FreezeGame;                         // Freezes the game when pressed.
-
+    public string   MainGame;
 
     private void Awake()
     {
@@ -32,25 +21,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-        // Make sure there are no screens active.
-        DeathScreen.SetActive(false);
-        QuitScreen.SetActive(false);
-        ResetScoreScreen.SetActive(false);
-        MainScreen.SetActive(true);
     }
 
-    private void Update()
+    public void Start()
     {
-        // If the game is paused freeze everything. If the game is not, don't do so. 
-        if (FreezeGame == true && Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-        }
-        else if (FreezeGame == false && Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
+        // Make sure there are no screens active.
+        UIManager.Instance.DeathScreen.SetActive(false);
+        UIManager.Instance.QuitScreen.SetActive(false);
+        UIManager.Instance.ResetScoreScreen.SetActive(false);
+        UIManager.Instance.MainScreen.SetActive(true);
     }
 
     /// <summary>
@@ -67,24 +46,27 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ResetScreen()
     {
-        MainScreen.SetActive(false);
-        ResetScoreScreen.SetActive(true);
+        UIManager.Instance.MainScreen.SetActive(false);
+        UIManager.Instance.ResetScoreScreen.SetActive(true);
     }
 
     /// <summary>
-    /// Resets the highscore.
+    /// Resets the highscore and returns to the original startscreen. When in StarScreen scene.
     /// </summary>
     public void ResetScore()
     {
         ScoreManager.Instance.WipeHighscore();
-        ResetScoreScreen.SetActive(false);
-        MainScreen.SetActive(true);
+        UIManager.Instance.ResetScoreScreen.SetActive(false);
+        UIManager.Instance.MainScreen.SetActive(true);
     }
 
+    /// <summary>
+    /// Returns to the original startscreen. When in StarScreen scene.
+    /// </summary>
     public void DontResetScore()
     {
-        ResetScoreScreen.SetActive(false);
-        MainScreen.SetActive(true);
+        UIManager.Instance.ResetScoreScreen.SetActive(false);
+        UIManager.Instance.MainScreen.SetActive(true);
     }
 
 
@@ -96,8 +78,8 @@ public class GameManager : MonoBehaviour
         // Stop increasing the score. And save the highscore.
         ScoreManager.Instance.Counting = false;
         ScoreManager.Instance.SaveHighScore();
-        
-        DeathScreen.SetActive(true);
+
+        UIManager.Instance.DeathScreen.SetActive(true);
     }
 
     /// <summary>
@@ -105,8 +87,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void EndGame()
     {
-        DeathScreen.SetActive(false);
-        QuitScreen.SetActive(true);
+        UIManager.Instance.DeathScreen.SetActive(false);
+        UIManager.Instance.QuitScreen.SetActive(true);
     }
 
     /// <summary>

@@ -35,11 +35,18 @@ public class ScoreManager : MonoBehaviour
 
     public void Update()
     {
+        // When the score gets higher than the highscore the highscore will be increased.
         if (Score > HighScore)
         {
             HighScore = Score;
             // Update the score on the UI.
             UIManager.Instance.HighScore.text = string.Format("Highscore: {0}", HighScore);
+        }
+
+        if (!Counting)
+        {
+            UIManager.Instance.DeadHighScore.text = string.Format("Highscore: {0}", HighScore);
+            UIManager.Instance.DeadScore.text = string.Format("Score: {0}", Score);
         }
     }
 

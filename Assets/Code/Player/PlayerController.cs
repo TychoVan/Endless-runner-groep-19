@@ -35,10 +35,13 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.GetComponent<EnemyTag>())
         {
             this.gameObject.GetComponent<Health>().TakeDamage(other.GetComponent<FlyMovement>().Data.Damage);
+            Destroy(other.gameObject);
         }
         else if (other.gameObject.GetComponent<CoinTag>())
         {
             ScoreManager.Instance.AddToScore(1000);
+            Destroy(other.gameObject);
+
         }
     }
 }
